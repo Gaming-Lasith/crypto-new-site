@@ -9,10 +9,8 @@ xhr.addEventListener("readystatechange", function () {
       const response = JSON.parse(this.responseText);
       const newsContainer = document.getElementById("newsContainer");
 
-      // Clear old content
       newsContainer.innerHTML = "";
 
-      // Loop through articles
       response.forEach(article => {
         const col = document.createElement("div");
         col.className = "col-md-4";
@@ -20,7 +18,7 @@ xhr.addEventListener("readystatechange", function () {
         col.innerHTML = `
           <div class="card shadow h-100">
             <img src="${article.image || 'https://via.placeholder.com/400x200?text=Crypto+News'}" 
-                 class="card-img-top" alt="News Image">
+                 class="card-img-top" alt="News">
             <div class="card-body">
               <h5 class="card-title">${article.title}</h5>
               <p class="card-text">${article.excerpt || ''}</p>
@@ -34,16 +32,17 @@ xhr.addEventListener("readystatechange", function () {
 
         newsContainer.appendChild(col);
       });
-    } catch (error) {
-      console.error("Error parsing API response:", error);
+    } catch (err) {
+      console.error("Parsing error:", err);
       document.getElementById("newsContainer").innerHTML =
         `<div class="alert alert-danger">Failed to load news.</div>`;
     }
   }
 });
 
+// 👇 Replace with your actual RapidAPI key
 xhr.open("GET", "https://crypto-news54.p.rapidapi.com/v2/media?orderby=date&order=desc&context=view&status=inherit&per_page=10&page=1");
-xhr.setRequestHeader("x-rapidapi-key", "92e8468d22mshc904ca948d0cc2bp180380jsnbfc0282e2967");
+xhr.setRequestHeader("x-rapidapi-key", "YOUR_API_KEY_HERE");
 xhr.setRequestHeader("x-rapidapi-host", "crypto-news54.p.rapidapi.com");
 
 xhr.send(data);
