@@ -42,7 +42,8 @@ xhr.addEventListener("readystatechange", function () {
 
 // 👇 Replace with your actual RapidAPI key
 xhr.open("GET", "https://crypto-news54.p.rapidapi.com/v2/media?orderby=date&order=desc&context=view&status=inherit&per_page=10&page=1");
-xhr.setRequestHeader("x-rapidapi-key", "YOUR_API_KEY_HERE");
+xhr.setRequestHeader("x-rapidapi-key", RAPIDAPI_KEY);
 xhr.setRequestHeader("x-rapidapi-host", "crypto-news54.p.rapidapi.com");
 
 xhr.send(data);
+
